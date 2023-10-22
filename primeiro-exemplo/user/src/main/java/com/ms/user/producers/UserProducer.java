@@ -10,8 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserProducer {
 
-    @Autowired
-    RabbitTemplate rabbitTemplate;
+    final RabbitTemplate rabbitTemplate;
+
+    public UserProducer(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @Value(value = "${broker.queue.email.name}")
     private String routingKey;
